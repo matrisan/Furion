@@ -1,0 +1,41 @@
+<idea-plugin>
+    <id>com.matrixboot.furion</id>
+    <name>Furion</name>
+    <vendor email="spring-boot@qq.com" url="http://www.matrixboot.com">Matrix</vendor>
+
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!--应用级别组件-->
+    <applicationListeners>
+        <listener class="com.matrixboot.furion.application.listener.ProjectStartListener" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </applicationListeners>
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup displayType="BALLOON" id="PugnaGroup"/>
+        <!-- Add your extensions here -->
+        <projectService serviceImplementation="com.matrixboot.furion.application.service.KubeService"/>
+        <projectService serviceImplementation="com.matrixboot.furion.application.service.JenkinsService"/>
+        <projectService serviceImplementation="com.matrixboot.furion.domain.repository.JenkinsSettingService"/>
+        <projectService serviceImplementation="com.matrixboot.furion.domain.repository.KubeSettingService"/>
+        <projectConfigurable groupId="tools" displayName="Furion" id="Furion"
+                             instance="com.matrixboot.furion.infrastructure.config.FurionConfigurable"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="matrixboot-deploy" class="com.matrixboot.furion.action.DeployAction" text="Deploy"
+                description="Deploy" icon="/icon/deploy.svg">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <keyboard-shortcut first-keystroke="meta shift D" keymap="Mac OS X 10.5+"/>
+        </action>
+
+    </actions>
+</idea-plugin>
