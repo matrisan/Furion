@@ -15,6 +15,7 @@
     <!--应用级别组件-->
     <applicationListeners>
         <listener class="com.matrixboot.furion.application.listener.ProjectStartListener" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.matrixboot.furion.application.listener.NotificationListenerImpl" topic="com.intellij.openapi.vcs.changes.CommitResultHandler"/>
     </applicationListeners>
 
 

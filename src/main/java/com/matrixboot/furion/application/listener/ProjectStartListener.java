@@ -1,6 +1,7 @@
 package com.matrixboot.furion.application.listener;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManagerListener;
 import org.jetbrains.annotations.NotNull;
