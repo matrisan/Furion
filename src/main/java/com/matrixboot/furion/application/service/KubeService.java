@@ -7,6 +7,10 @@ import com.matrixboot.furion.domain.repository.KubeSettingService;
 import com.matrixboot.furion.infrastructure.common.KubeCreateCommand;
 import org.jetbrains.annotations.NotNull;
 
+
+import io.fabric8.kubernetes.api.model.Event;
+import io.fabric8.kubernetes.client.DefaultKubernetesClient;
+import io.fabric8.kubernetes.client.KubernetesClient;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.concurrent.ExecutorService;
@@ -40,6 +44,10 @@ public final class KubeService {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        KubernetesClient client = DefaultKubernetesClient.fromConfig(stream);
+        client.v1().events().inNamespace("matrix-ns").list().getItems().stream()
+                .map(Event::getMessage)
+                .forEach(System.out::println);
     }
 
 

@@ -28,8 +28,7 @@ public class SettingUi {
     }
 
     private void initUi() {
-        kubeConfigTextField.addBrowseFolderListener(new TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()) {
-        });
+        kubeConfigTextField.addBrowseFolderListener(new TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()) {});
     }
 
     public JPanel getMainPanel() {
